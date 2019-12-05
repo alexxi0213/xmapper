@@ -165,7 +165,7 @@ class Node(Element):
             return [node.cdata.strip() for node in obj]
         if isinstance(obj, str) and obj.strip() == '':
             return []
-        if isinstance(obj, str) or isinstance(obj, unicode):
+        if isinstance(obj, str):
             return obj
         return obj.cdata.strip()
 
