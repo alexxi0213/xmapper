@@ -11,7 +11,7 @@ requires = [str(ir.req) for ir in install_reqs]
 setup(
     name="mytangle",
     version=version,
-    description='mytangle,
+    description='mytangle',
     long_description=open('README.md').read(),
     author='Alex xi',
     packages=find_packages('src'),
