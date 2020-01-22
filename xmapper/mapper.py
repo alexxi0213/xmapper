@@ -1,7 +1,7 @@
 import pprint
 import yaml
 
-from .mytangle import parse
+from xmapper import parse
 
 
 SKIP_SEARCH = ['', 'null']
