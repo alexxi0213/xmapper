@@ -9,9 +9,9 @@ install_reqs = parse_requirements('./requirements.txt', session=PipSession())
 requires = [str(ir.req) for ir in install_reqs]
 
 setup(
-    name="mytangle",
+    name="xmapper",
     version=version,
-    description='mytangle',
+    description='xml mapper',
     long_description=open('README.md').read(),
     author='Alex xi',
     packages=find_packages('src'),
