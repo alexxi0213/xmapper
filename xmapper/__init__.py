@@ -9,7 +9,7 @@ from untangle import StringIO
 from xml.sax import make_parser, handler
 
 
-class cached_property(object):
+class CachedProperty(object):
     """
     Descriptor (non-data) for building an attribute on-demand on first use.
     """
@@ -73,7 +73,7 @@ class Node(Element):
         for child in self.children:
             child.clean_path_cache()
 
-    @cached_property
+    @CachedProperty
     def paths(self):
         """
         paths contains all the full paths in xml tree
@@ -101,7 +101,7 @@ class Node(Element):
         paths = {str('.'.join(p)) for p in raw_paths}
         return paths
 
-    @cached_property
+    @CachedProperty
     def all_paths(self):
         """
         all paths contails all the paths in xml tree
