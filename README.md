@@ -1,9 +1,9 @@
 # xmapper
 
 ## Motivation:
-If you need to convert massive number of XML files from one format to another format like below:
+If you need to convert massive number of XML files from one format to another format like below example:
 
-### from:
+### From:
 ```xml
 <?xml version='1.0' encoding='UTF-8'?>
 <listing>
@@ -15,7 +15,7 @@ If you need to convert massive number of XML files from one format to another fo
     </ad>
 </listing>
 ```
-### to:
+### To:
 ```xml
 <?xml version='1.0' encoding='UTF-8'?>
 <property>
@@ -26,7 +26,7 @@ If you need to convert massive number of XML files from one format to another fo
     <image>https://img.599245196.jpg</image>
 </property>
 ```
-xmapper will come in handy, it can parse the input and output XML files and bulid a mapper rule yaml config file like below:
+xmapper will come in handy, it can parse the input and output XML files and bulid a customizable mapper rule yaml config file like below:
 ```yaml
 
 ```
