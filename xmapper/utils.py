@@ -24,7 +24,7 @@ class CachedProperty(object):
         # Build the attribute.
         attr = self._factory(instance)
 
-        # if readonly mode cache the value; hide ourselves.
+        # If readonly mode cache the value; hide ourselves.
         if instance.mode == 'r':
             setattr(instance, self._attr_name, attr)
         return attr
@@ -498,7 +498,7 @@ def dump_str(obj):
 
 def element_gen(obj):
     if not isinstance(obj, Node):
-        raise TypeError('input must be a mytangle.Node instance')
+        raise TypeError('input must be a Xmapper.Node instance')
 
     tag_name = obj._name
     element = etree.Element(tag_name)
