@@ -467,7 +467,7 @@ def dump_xml(obj, xml_name):
         temp_tree = build_etree(obj.children[0])
 
     xml_str = etree.tostring(temp_tree, encoding='utf-8',
-                             xml_declaration = True, pretty_print=True)
+                             xml_declaration=True, pretty_print=True)
     parser = etree.XMLParser(remove_blank_text=True)
     temp_tree = etree.XML(xml_str, parser)
     new_tree = etree.ElementTree(temp_tree)
@@ -476,6 +476,7 @@ def dump_xml(obj, xml_name):
         encoding='utf-8',
         xml_declaration=True,
         pretty_print=True)
+
 
 def dump_str(obj):
     if not isinstance(obj, Node):
