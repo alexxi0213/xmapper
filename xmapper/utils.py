@@ -480,7 +480,7 @@ def dump_xml(obj, xml_name):
 
 def dump_str(obj):
     if not isinstance(obj, Node):
-        raise TypeError('input must be a mytangle.Node instance')
+        raise TypeError('input must be a Xmapper.Node instance')
 
     if obj._name is not None:
         temp_tree = build_etree(obj)
@@ -494,7 +494,7 @@ def dump_str(obj):
     temp_tree = etree.ElementTree(new_tree)
     xml_str = etree.tostring(temp_tree, encoding='utf-8',
                              xml_declaration=True, pretty_print=True)
-    return xml_str
+    return xml_str.decode('utf-8')
 
 
 def element_gen(obj):
