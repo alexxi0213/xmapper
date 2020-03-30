@@ -1,5 +1,10 @@
 # xmapper
 
+## Installation:
+```bash
+pip install xmapper
+```
+
 ## Motivation:
 If you need to convert massive number of XML files from one format to another format like below example:
 
