@@ -12,11 +12,7 @@ See https://github.com/xxh840912/xmapper
 from setuptools import find_packages
 from setuptools import setup
 
-version = '1.0.0'
-
-with open('requirements.txt') as f:
-    requires = f.read().strip().split('\n')
-
+version = '1.0.1'
 
 setup(
     name="xmapper",
@@ -30,7 +26,11 @@ setup(
     include_package_data=True,
     zip_safe=False,
     url="https://github.com/xxh840912/xmapper",
-    install_requires=requires,
+    install_requires=[
+        "lxml==4.4.2",
+        "PyYAML==5.2",
+        "untangle==1.1.1"
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
