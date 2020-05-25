@@ -2,6 +2,7 @@
 import unittest
 
 from xmapper.utils import parse, dump_str
+from xmapper import Comparer
 
 
 class TestCommon(unittest.TestCase):
@@ -132,3 +133,48 @@ class TestCommon(unittest.TestCase):
         }
 
         self.assertEqual(obj3.value_mapping, value_mapping)
+
+    def test_compare_xmls(self):
+        xml_a = """<?xml version='1.0' encoding='UTF-8'?>
+                    <property>
+                        <id>353324</id>
+                        <type>house</type>
+                        <propertyType>house</propertyType>
+                        <salePriority>high</salePriority>
+                        <image>https://img.599245196.jpg</image>
+                    </property>
+                """
+
+        xml_b = """<?xml version='1.0' encoding='UTF-8'?>
+                    <property>
+                        <propertyType>house</propertyType>
+                        <salePriority>high</salePriority>
+                        <image>https://img.599245196.jpg</image>
+                        <id>353324</id>
+                        <type>house</type>
+                    </property>
+               """
+        compare = Comparer(xml_a, xml_b)
+        self.assertEqual(compare.compare(), True)
+
+        xml_c = """<?xml version='1.0' encoding='UTF-8'?>
+                    <property>
+                        <id>353324</id>
+                        <type>house</type>
+                        <propertyType>house</propertyType>
+                        <salePriority>high</salePriority>
+                        <image>https://img.599245196.jpg</image>
+                    </property>
+                """
+
+        xml_d = """<?xml version='1.0' encoding='UTF-8'?>
+                    <property>
+                        <id>353324</id>
+                        <type>house</type>
+                        <propertyType>house$$$$</propertyType>
+                        <salePriority>high</salePriority>
+                        <image>https://img.599245196.jpg</image>
+                    </property>
+                """
+        compare = Comparer(xml_c, xml_d)
+        self.assertEqual(compare.compare(), False)

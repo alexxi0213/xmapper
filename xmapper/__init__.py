@@ -59,17 +59,14 @@ class Comparer(object):
         self.obj_file_two = parse(file_two)
 
     def compare(self):
-        mismatch = False
+        match = True
         if self.obj_file_one.paths != self.obj_file_two.paths:
             print('Your input xmls have different structure, pls check')
-            return
+            match = False
         else:
             for path in self.obj_file_one.paths:
                 if self.obj_file_one.get_value_by_path(path) \
                         != self.obj_file_two.get_value_by_path(path):
-                    mismatch = True
                     print('mismatch found for path: {}'.format(path))
-        if mismatch:
-            print('Compare failed')
-        else:
-            print('Compare success')
+                    match = False
+        return match

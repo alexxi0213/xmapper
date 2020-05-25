@@ -6,6 +6,35 @@ pip install xmapper
 ```
 
 ## Motivation:
+If you want to compare massive number of different XML files, maybe the content is same
+ but the item order is different like:
+ 
+ XML_1:
+```xml
+<?xml version='1.0' encoding='UTF-8'?>
+<listing>
+    <ad>
+        <type>house</type>
+        <listingId>353324</listingId>
+        <priority>high</priority>
+        <url>https://img.599245196.jpg</url>
+    </ad>
+</listing>
+```
+
+ XML_2:
+```xml
+<?xml version='1.0' encoding='UTF-8'?>
+<listing>
+    <ad>
+        <url>https://img.599245196.jpg</url>
+        <priority>high</priority>
+        <listingId>353324</listingId>
+        <type>house</type>
+    </ad>
+</listing>
+```
+
 If you need to convert massive number of XML files from one format to another format like below example:
 
 ### From:
@@ -31,7 +60,17 @@ If you need to convert massive number of XML files from one format to another fo
     <image>https://img.599245196.jpg</image>
 </property>
 ```
-xmapper will come in handy, it can parse the input and output XML files and bulid a customizable mapper rule yaml config file like below:
+xmapper will come in handy, it will convert your XML to a key/value pairs
+ structure like:
+ ```python
+{'listing.ad.priority': 'high',
+ 'listing.ad.listingId': '353324',
+ 'listing.ad.type': 'house',
+ 'listing.ad.url': 'https://img.599245196.jpg'}
+```
+
+xmapper can also parse the input and output XML files and bulid a customizable
+ mapper rule yaml config file like below:
 ```yaml
 property.id: listing.ad.listingId
 property.image: listing.ad.url
