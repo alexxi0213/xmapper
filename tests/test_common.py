@@ -147,11 +147,11 @@ class TestCommon(unittest.TestCase):
 
         xml_b = """<?xml version='1.0' encoding='UTF-8'?>
                     <property>
-                        <propertyType>house</propertyType>
-                        <salePriority>high</salePriority>
-                        <image>https://img.599245196.jpg</image>
-                        <id>353324</id>
-                        <type>house</type>
+                    <propertyType>house</propertyType> # ignore me
+                    <salePriority>high</salePriority>
+                    <image>https://img.599245196.jpg</image>
+                    <id>353324</id>
+                    <type>house</type>
                     </property>
                """
         compare = Comparer(xml_a, xml_b)

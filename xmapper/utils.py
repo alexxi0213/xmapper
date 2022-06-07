@@ -380,9 +380,9 @@ class Handler(handler.ContentHandler):
         self.index = {}
 
     def startElement(self, name, attributes):
-        name = name.replace('-', '_')
+        name = name.replace('-', '~')
         name = name.replace('.', '_')
-        name = name.replace(':', '_')
+        name = name.replace(':', '*')
         attrs = dict()
         for k, v in attributes.items():
             attrs[k] = v
@@ -502,6 +502,9 @@ def element_gen(obj):
         raise TypeError('input must be a Xmapper.Node instance')
 
     tag_name = obj._name
+    tag_name = tag_name.replace('_', '.')
+    tag_name = tag_name.replace('*', ':')
+    tag_name = tag_name.replace('~', '-')
     element = etree.Element(tag_name)
     element.text = obj.cdata
     if obj._attributes:
