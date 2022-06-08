@@ -206,19 +206,19 @@ class TestCommon(unittest.TestCase):
         <properties>
             <java.version>11</java.version>
             <mybatisplus-maven-plugin.version>1.0</mybatisplus-maven-plugin.version>
-            <shedlock-provider-jdbc-template.version>4.0.1</shedlock-provider-jdbc-template.version>
+            <shedlock-provider-jdbc_template.version>4.0.1</shedlock-provider-jdbc_template.version>
         </properties>"""
         obj = parse(xml_str, mode='r')
         expected_value_mapping = {
-            'properties.java_version': '11',
-            'properties.shedlock~provider~jdbc~template_version': '4.0.1',
-            'properties.mybatisplus~maven~plugin_version': '1.0'
+            'properties.java!version': '11',
+            'properties.shedlock~provider~jdbc_template!version': '4.0.1',
+            'properties.mybatisplus~maven~plugin!version': '1.0'
         }
         self.assertEqual(expected_value_mapping, obj.value_mapping)
-        self.assertEqual(obj.get_value_by_path('properties.java_version'), '11')
+        self.assertEqual(obj.get_value_by_path('properties.java!version'), '11')
         self.assertEqual(obj.get_value_by_path(
-            'properties.shedlock~provider~jdbc~template_version'), '4.0.1'
+            'properties.shedlock~provider~jdbc_template!version'), '4.0.1'
         )
         output_xml_str = dump_str(obj)
-        self.assertTrue('<shedlock-provider-jdbc-template.version>' in output_xml_str)
+        self.assertTrue('<shedlock-provider-jdbc_template.version>' in output_xml_str)
         self.assertTrue('<java.version>' in output_xml_str)
