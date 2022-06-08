@@ -443,7 +443,7 @@ def parse(filename, mode='rw', **parser_features):
 
 def build_etree(obj):
     """
-    :param obj: obj must be like obj.juwai
+    :param obj: obj must be instance of xmapper Node
     :return: etree object
     """
     if not obj.children:

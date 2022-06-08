@@ -176,5 +176,49 @@ class TestCommon(unittest.TestCase):
                         <image>https://img.599245196.jpg</image>
                     </property>
                 """
-        compare = Comparer(xml_c, xml_d)
-        self.assertEqual(compare.compare(), False)
+
+        xml_e = """<?xml version='1.0' encoding='UTF-8'?>
+                    <property>
+                        <id>353324</id>
+                        <type>house</type>
+                        <propertyType>house</propertyType>
+                        <salePriority>high</salePriority>
+                        <image>https://img.599245196.jpg</image>
+                    </property>
+                """
+
+        xml_f = """<?xml version='1.0' encoding='UTF-8'?>
+                    <property>
+                        <id>353324</id>
+                        <type>house</type>
+                        <propertyType>house</propertyType>
+                        <salePriority>high</salePriority>
+                        <imageUrl>https://img.599245196.jpg</imageUrl>
+                    </property>
+                """
+        compare1 = Comparer(xml_c, xml_d)
+        self.assertEqual(compare1.compare(), False)
+        compare2 = Comparer(xml_e, xml_f)
+        self.assertEqual(compare2.compare(), False)
+
+    def test_special_tag_name(self):
+        xml_str = """<?xml version='1.0' encoding='utf-8'?>
+        <properties>
+            <java.version>11</java.version>
+            <mybatisplus-maven-plugin.version>1.0</mybatisplus-maven-plugin.version>
+            <shedlock-provider-jdbc-template.version>4.0.1</shedlock-provider-jdbc-template.version>
+        </properties>"""
+        obj = parse(xml_str, mode='r')
+        expected_value_mapping = {
+            'properties.java_version': '11',
+            'properties.shedlock~provider~jdbc~template_version': '4.0.1',
+            'properties.mybatisplus~maven~plugin_version': '1.0'
+        }
+        self.assertEqual(expected_value_mapping, obj.value_mapping)
+        self.assertEqual(obj.get_value_by_path('properties.java_version'), '11')
+        self.assertEqual(obj.get_value_by_path(
+            'properties.shedlock~provider~jdbc~template_version'), '4.0.1'
+        )
+        output_xml_str = dump_str(obj)
+        self.assertTrue('<shedlock-provider-jdbc-template.version>' in output_xml_str)
+        self.assertTrue('<java.version>' in output_xml_str)
