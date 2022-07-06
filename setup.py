@@ -27,7 +27,7 @@ setup(
     zip_safe=False,
     url="https://github.com/xxh840912/xmapper",
     install_requires=[
-        "lxml==4.6.5",
+        "lxml==4.9.1",
         "PyYAML==5.4.1",
         "untangle==1.1.1"
     ],
