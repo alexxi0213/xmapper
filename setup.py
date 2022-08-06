@@ -29,7 +29,7 @@ setup(
     install_requires=[
         "lxml==4.6.5",
         "PyYAML==5.4.1",
-        "untangle==1.1.1"
+        "untangle==1.2.1"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
